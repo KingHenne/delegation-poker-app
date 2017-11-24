@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StatusBar, StyleSheet, View} from 'react-native';
+import {Dimensions, StatusBar, StyleSheet, View} from 'react-native';
 
 import {Header} from './Header';
 import {Level} from './Level';
@@ -54,6 +54,11 @@ const levels = [
 ];
 
 export default class App extends React.Component {
+  constructor(props: {}) {
+    super(props);
+    Dimensions.addEventListener('change', () => this.forceUpdate());
+  }
+
   render() {
     return (
       <View style={styles.container}>

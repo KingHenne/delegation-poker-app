@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
 
 export interface LevelProps {
   backgroundColor: string;
@@ -11,13 +11,20 @@ export interface LevelProps {
 export class Level extends React.Component<LevelProps> {
   render() {
     const {backgroundColor, level, name, description} = this.props;
+    const {height, width} = Dimensions.get('window');
+    const descriptionStyle = {
+      flex: width >= 480 ? 4 : width >= 560 ? 6 : 2,
+      fontSize: height > 320 ? 14 : 13,
+    };
 
     return (
       <View style={[styles.cell, {backgroundColor}]}>
         <Text style={styles.name}>
           {level}. {name}
         </Text>
-        <Text style={styles.description}>{description}</Text>
+        <Text style={[styles.description, descriptionStyle]}>
+          {description}
+        </Text>
       </View>
     );
   }
@@ -37,7 +44,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   description: {
-    flex: 2,
     marginLeft: 10,
   },
 });
