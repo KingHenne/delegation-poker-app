@@ -1,5 +1,11 @@
 import * as React from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 export interface LevelProps {
   backgroundColor: string;
@@ -18,19 +24,24 @@ export class Level extends React.Component<LevelProps> {
     };
 
     return (
-      <View style={[styles.cell, {backgroundColor}]}>
-        <Text style={styles.name}>
-          {level}. {name}
-        </Text>
-        <Text style={[styles.description, descriptionStyle]}>
-          {description}
-        </Text>
-      </View>
+      <TouchableOpacity style={styles.container} activeOpacity={0.7}>
+        <View style={[styles.cell, {backgroundColor}]}>
+          <Text style={styles.name}>
+            {level}. {name}
+          </Text>
+          <Text style={[styles.description, descriptionStyle]}>
+            {description}
+          </Text>
+        </View>
+      </TouchableOpacity>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   cell: {
     flex: 1,
     flexDirection: 'row',
