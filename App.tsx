@@ -60,8 +60,14 @@ export default class App extends React.Component {
         <StatusBar barStyle="light-content" translucent />
         <Header />
 
-        {levels.map(({level, backgroundColor}) => (
-          <Level key={level} level={level} backgroundColor={backgroundColor} />
+        {levels.map(({level, backgroundColor, name, description}) => (
+          <Level
+            key={level}
+            level={level}
+            backgroundColor={backgroundColor}
+            name={name}
+            description={description}
+          />
         ))}
       </View>
     );
