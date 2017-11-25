@@ -53,13 +53,22 @@ const levels = [
   },
 ];
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'rgb(50, 50, 50)',
+    justifyContent: 'center',
+  },
+});
+
+// tslint:disable-next-line no-default-export
 export default class App extends React.Component {
-  constructor(props: {}) {
+  public constructor(props: {}) {
     super(props);
     Dimensions.addEventListener('change', () => this.forceUpdate());
   }
 
-  render() {
+  public render(): JSX.Element {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" translucent />
@@ -78,11 +87,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'rgb(50, 50, 50)',
-    justifyContent: 'center',
-  },
-});

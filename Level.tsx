@@ -14,8 +14,29 @@ export interface LevelProps {
   description: string;
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  cell: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+  },
+  name: {
+    flex: 1,
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  description: {
+    marginLeft: 10,
+  },
+});
+
 export class Level extends React.Component<LevelProps> {
-  render() {
+  public render(): JSX.Element {
     const {backgroundColor, level, name, description} = this.props;
     const {height, width} = Dimensions.get('window');
     const descriptionStyle = {
@@ -37,24 +58,3 @@ export class Level extends React.Component<LevelProps> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  cell: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-  },
-  name: {
-    flex: 1,
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
-  description: {
-    marginLeft: 10,
-  },
-});
