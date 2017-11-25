@@ -1,14 +1,11 @@
 import * as React from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
+
+import {TouchableView} from './TouchableView';
 
 export interface LevelProps {
   backgroundColor: string;
+  highlightColor?: string;
   level: number;
   name: string;
   description: string;
@@ -16,9 +13,6 @@ export interface LevelProps {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   cell: {
     flex: 1,
     flexDirection: 'row',
@@ -40,7 +34,14 @@ const styles = StyleSheet.create({
 
 export class Level extends React.Component<LevelProps> {
   public render(): JSX.Element {
-    const {backgroundColor, level, name, description, onPress} = this.props;
+    const {
+      backgroundColor,
+      highlightColor,
+      level,
+      name,
+      description,
+      onPress,
+    } = this.props;
     const {height, width} = Dimensions.get('window');
     const descriptionStyle = {
       flex: width >= 480 ? 4 : width >= 560 ? 6 : 2,
@@ -48,12 +49,12 @@ export class Level extends React.Component<LevelProps> {
     };
 
     return (
-      <TouchableOpacity
-        style={styles.container}
-        activeOpacity={0.7}
+      <TouchableView
+        backgroundColor={backgroundColor}
+        highlightColor={highlightColor}
         onPress={() => onPress(level)}
       >
-        <View style={[styles.cell, {backgroundColor}]}>
+        <View style={styles.cell}>
           <Text style={styles.name}>
             {level + 1}. {name}
           </Text>
@@ -61,7 +62,7 @@ export class Level extends React.Component<LevelProps> {
             {description}
           </Text>
         </View>
-      </TouchableOpacity>
+      </TouchableView>
     );
   }
 }

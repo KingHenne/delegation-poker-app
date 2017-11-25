@@ -5,42 +5,56 @@ import {Card} from './Card';
 import {Header} from './Header';
 import {Level} from './Level';
 
-const levels = [
+interface LevelInfo {
+  backgroundColor: string;
+  highlightColor?: string;
+  name: string;
+  description: string;
+}
+
+const levels: LevelInfo[] = [
   {
-    backgroundColor: 'rgb(255, 215, 220)',
+    backgroundColor: 'hsl(353, 100%, 92%)',
+    highlightColor: 'hsl(353, 100%, 82%)',
     name: 'Tell',
     description:
       'Make the decision. You might explain your motivation. No discussion.',
   },
   {
-    backgroundColor: 'rgb(254, 228, 209)',
+    backgroundColor: 'hsl(25, 96%, 91%)',
+    highlightColor: 'hsl(25, 96%, 81%)',
     name: 'Sell',
     description:
       'Make the decision. Try to convince others and help them feel involved.',
   },
   {
-    backgroundColor: 'rgb(245, 243, 206)',
+    backgroundColor: 'hsl(57, 66%, 88%)',
+    highlightColor: 'hsl(57, 66%, 78%)',
     name: 'Consult',
     description: 'Ask for input, take input into considaration, then decide.',
   },
   {
-    backgroundColor: 'rgb(231, 253, 211)',
+    backgroundColor: 'hsl(91, 91%, 91%)',
+    highlightColor: 'hsl(91, 91%, 81%)',
     name: 'Agree',
     description: 'Discuss until you reach consensus.',
   },
   {
-    backgroundColor: 'rgb(211, 253, 231)',
+    backgroundColor: 'hsl(149, 91%, 91%)',
+    highlightColor: 'hsl(149, 91%, 81%)',
     name: 'Advise',
     description: 'Offer input, let others decide.',
   },
   {
-    backgroundColor: 'rgb(206, 243, 245)',
+    backgroundColor: 'hsl(183, 66%, 88%)',
+    highlightColor: 'hsl(183, 66%, 78%)',
     name: 'Inquire',
     description:
       'Leave decision to others, then ask them to convince/inform you. It’s their decision.',
   },
   {
-    backgroundColor: 'rgb(209, 229, 254)',
+    backgroundColor: 'hsl(213, 96%, 91%)',
+    highlightColor: 'hsl(213, 96%, 81%)',
     name: 'Delegate',
     description:
       'Leave decision completely to others. Don’t want to know anything about it.',
@@ -77,16 +91,19 @@ export default class App extends React.Component {
             onPress={() => this.setState({selectedLevel: -1})}
           />
         ) : (
-          levels.map(({backgroundColor, name, description}, level) => (
-            <Level
-              key={level}
-              level={level}
-              backgroundColor={backgroundColor}
-              name={name}
-              description={description}
-              onPress={selectedLevel => this.setState({selectedLevel})}
-            />
-          ))
+          levels.map(
+            ({backgroundColor, highlightColor, name, description}, level) => (
+              <Level
+                key={level}
+                level={level}
+                backgroundColor={backgroundColor}
+                highlightColor={highlightColor}
+                name={name}
+                description={description}
+                onPress={selectedLevel => this.setState({selectedLevel})}
+              />
+            )
+          )
         )}
       </View>
     );

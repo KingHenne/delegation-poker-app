@@ -1,14 +1,11 @@
 import * as React from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} from 'react-native';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
+
+import {TouchableView} from './TouchableView';
 
 export interface CardProps {
   backgroundColor: string;
+  highlightColor?: string;
   level: number;
   name: string;
   description: string;
@@ -53,13 +50,25 @@ const styles = StyleSheet.create({
 
 export class Card extends React.Component<CardProps> {
   public render(): JSX.Element {
-    const {backgroundColor, level, name, description, onPress} = this.props;
+    const {
+      backgroundColor,
+      highlightColor,
+      level,
+      name,
+      description,
+      onPress,
+    } = this.props;
     const {height} = Dimensions.get('window');
     const levelAndNameStyle = {flex: height > 320 ? 2 : 3};
 
     return (
-      <TouchableHighlight style={styles.container} onPress={onPress}>
-        <View style={[styles.content, {backgroundColor}]}>
+      <TouchableView
+        backgroundColor={backgroundColor}
+        highlightColor={highlightColor}
+        style={styles.container}
+        onPress={onPress}
+      >
+        <View style={styles.content}>
           <View style={[styles.levelAndName, levelAndNameStyle]}>
             <Text style={styles.level}>{level + 1}</Text>
             <Text style={styles.name}>{name}</Text>
@@ -68,7 +77,7 @@ export class Card extends React.Component<CardProps> {
             <Text style={styles.description}>{description}</Text>
           </View>
         </View>
-      </TouchableHighlight>
+      </TouchableView>
     );
   }
 }
