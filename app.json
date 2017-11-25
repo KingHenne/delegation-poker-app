@@ -1,6 +1,16 @@
 {
   "expo": {
+    "name": "Delegation Poker",
+    "icon": "./icon.png",
+    "version": "1.0.0",
+    "slug": "delegation-poker",
     "sdkVersion": "23.0.0",
+    "ios": {
+      "bundleIdentifier": "software.strict.delegationpoker"
+    },
+    "android": {
+      "package": "software.strict.delegationpoker"
+    },
     "packagerOpts": {
       "sourceExts": ["ts", "tsx"],
       "transformer": "node_modules/react-native-typescript-transformer/index.js"
