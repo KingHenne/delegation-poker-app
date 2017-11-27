@@ -50,36 +50,33 @@ const styles = StyleSheet.create({
   },
 });
 
-export class Card extends React.Component<CardProps> {
-  public render(): JSX.Element {
-    const {
-      backgroundColor,
-      highlightColor,
-      level,
-      name,
-      description,
-      onPress,
-    } = this.props;
-    const {height} = Dimensions.get('window');
-    const levelAndNameStyle = {flex: height > 320 ? 2 : 3};
+export function Card({
+  backgroundColor,
+  highlightColor,
+  level,
+  name,
+  description,
+  onPress,
+}: CardProps): JSX.Element {
+  const {height} = Dimensions.get('window');
+  const levelAndNameStyle = {flex: height > 320 ? 2 : 3};
 
-    return (
-      <TouchableView
-        backgroundColor={backgroundColor}
-        highlightColor={highlightColor}
-        style={styles.container}
-        onPress={onPress}
-      >
-        <View style={styles.content}>
-          <View style={[styles.levelAndName, levelAndNameStyle]}>
-            <Text style={styles.level}>{level + 1}</Text>
-            <Text style={styles.name}>{name}</Text>
-          </View>
-          <View style={styles.descriptionView}>
-            <Text style={styles.description}>{description}</Text>
-          </View>
+  return (
+    <TouchableView
+      backgroundColor={backgroundColor}
+      highlightColor={highlightColor}
+      style={styles.container}
+      onPress={onPress}
+    >
+      <View style={styles.content}>
+        <View style={[styles.levelAndName, levelAndNameStyle]}>
+          <Text style={styles.level}>{level + 1}</Text>
+          <Text style={styles.name}>{name}</Text>
         </View>
-      </TouchableView>
-    );
-  }
+        <View style={styles.descriptionView}>
+          <Text style={styles.description}>{description}</Text>
+        </View>
+      </View>
+    </TouchableView>
+  );
 }

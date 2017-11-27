@@ -3,7 +3,7 @@ import {Dimensions, StatusBar, StyleSheet, View} from 'react-native';
 
 import {Card} from './src/components/Card';
 import {Header} from './src/components/Header';
-import {Level} from './src/components/Level';
+import {Levels} from './src/components/Levels';
 import {levels} from './src/levels';
 
 const styles = StyleSheet.create({
@@ -33,29 +33,25 @@ export default class App extends React.Component {
         <Header />
 
         <View style={styles.content}>
-          {levels.map(
-            ({backgroundColor, highlightColor, name, description}, level) => (
-              <Level
-                key={level}
-                level={level}
-                backgroundColor={backgroundColor}
-                highlightColor={highlightColor}
-                name={name}
-                description={description}
-                onPress={selectedLevel => this.setState({selectedLevel})}
-              />
-            )
-          )}
+          <Levels onLevelPress={this.handleLevelPress} />
 
           {this.state.selectedLevel >= 0 && (
             <Card
               level={this.state.selectedLevel}
               {...levels[this.state.selectedLevel]}
-              onPress={() => this.setState({selectedLevel: -1})}
+              onPress={this.handleCardPress}
             />
           )}
         </View>
       </View>
     );
   }
+
+  private handleLevelPress = (selectedLevel: number): void => {
+    this.setState({selectedLevel});
+  };
+
+  private handleCardPress = (): void => {
+    this.setState({selectedLevel: -1});
+  };
 }

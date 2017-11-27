@@ -32,37 +32,34 @@ const styles = StyleSheet.create({
   },
 });
 
-export class Level extends React.Component<LevelProps> {
-  public render(): JSX.Element {
-    const {
-      backgroundColor,
-      highlightColor,
-      level,
-      name,
-      description,
-      onPress,
-    } = this.props;
-    const {height, width} = Dimensions.get('window');
-    const descriptionStyle = {
-      flex: width >= 480 ? 4 : width >= 560 ? 6 : 2,
-      fontSize: height > 320 ? 14 : 13,
-    };
+export function Level({
+  backgroundColor,
+  highlightColor,
+  level,
+  name,
+  description,
+  onPress,
+}: LevelProps): JSX.Element {
+  const {height, width} = Dimensions.get('window');
+  const descriptionStyle = {
+    flex: width >= 480 ? 4 : width >= 560 ? 6 : 2,
+    fontSize: height > 320 ? 14 : 13,
+  };
 
-    return (
-      <TouchableView
-        backgroundColor={backgroundColor}
-        highlightColor={highlightColor}
-        onPress={() => onPress(level)}
-      >
-        <View style={styles.cell}>
-          <Text style={styles.name}>
-            {level + 1}. {name}
-          </Text>
-          <Text style={[styles.description, descriptionStyle]}>
-            {description}
-          </Text>
-        </View>
-      </TouchableView>
-    );
-  }
+  return (
+    <TouchableView
+      backgroundColor={backgroundColor}
+      highlightColor={highlightColor}
+      onPress={() => onPress(level)}
+    >
+      <View style={styles.cell}>
+        <Text style={styles.name}>
+          {level + 1}. {name}
+        </Text>
+        <Text style={[styles.description, descriptionStyle]}>
+          {description}
+        </Text>
+      </View>
+    </TouchableView>
+  );
 }
