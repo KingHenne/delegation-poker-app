@@ -15,6 +15,7 @@ export class FadeView extends React.Component<FadeViewProps, FadeViewState> {
     renderChildren: this.props.visible,
   };
 
+  private unmounted = false;
   private visibilityValue = new Animated.Value(this.props.visible ? 1 : 0);
 
   public componentWillReceiveProps({visible}: FadeViewProps): void {
@@ -26,8 +27,14 @@ export class FadeView extends React.Component<FadeViewProps, FadeViewState> {
       toValue: visible ? 1 : 0,
       duration: 150,
     }).start(() => {
-      this.setState({renderChildren: visible});
+      if (!this.unmounted) {
+        this.setState({renderChildren: visible});
+      }
     });
+  }
+
+  public componentWillUnmount(): void {
+    this.unmounted = true;
   }
 
   public render(): JSX.Element {
