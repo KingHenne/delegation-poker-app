@@ -14,7 +14,9 @@ export interface CardProps {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 7,
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
   },
   content: {
     flex: 1,

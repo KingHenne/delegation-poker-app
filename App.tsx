@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(50, 50, 50)',
     justifyContent: 'center',
   },
+  content: {
+    flex: 7,
+  },
 });
 
 // tslint:disable-next-line no-default-export
@@ -29,14 +32,8 @@ export default class App extends React.Component {
         <StatusBar barStyle="light-content" translucent />
         <Header />
 
-        {this.state.selectedLevel >= 0 ? (
-          <Card
-            level={this.state.selectedLevel}
-            {...levels[this.state.selectedLevel]}
-            onPress={() => this.setState({selectedLevel: -1})}
-          />
-        ) : (
-          levels.map(
+        <View style={styles.content}>
+          {levels.map(
             ({backgroundColor, highlightColor, name, description}, level) => (
               <Level
                 key={level}
@@ -48,8 +45,16 @@ export default class App extends React.Component {
                 onPress={selectedLevel => this.setState({selectedLevel})}
               />
             )
-          )
-        )}
+          )}
+
+          {this.state.selectedLevel >= 0 && (
+            <Card
+              level={this.state.selectedLevel}
+              {...levels[this.state.selectedLevel]}
+              onPress={() => this.setState({selectedLevel: -1})}
+            />
+          )}
+        </View>
       </View>
     );
   }
