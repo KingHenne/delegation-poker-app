@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 import {TouchableView} from './TouchableView';
+import {DimensionProps, responsive} from './responsive';
 
 export interface CardProps {
   backgroundColor: string;
@@ -49,15 +50,15 @@ const styles = StyleSheet.create({
 });
 
 export function Card({
+  windowHeight,
   backgroundColor,
   highlightColor,
   level,
   name,
   description,
   onPress,
-}: CardProps): JSX.Element {
-  const {height} = Dimensions.get('window');
-  const levelAndNameStyle = {flex: height > 320 ? 2 : 3};
+}: CardProps & DimensionProps): JSX.Element {
+  const levelAndNameStyle = {flex: windowHeight > 320 ? 2 : 3};
 
   return (
     <TouchableView
@@ -78,3 +79,5 @@ export function Card({
     </TouchableView>
   );
 }
+
+export const ResponsiveCard = responsive(Card);

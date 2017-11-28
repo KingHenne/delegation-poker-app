@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 import {TouchableView} from './TouchableView';
+import {DimensionProps, responsive} from './responsive';
 
 export interface LevelProps {
   backgroundColor: string;
@@ -33,17 +34,18 @@ const styles = StyleSheet.create({
 });
 
 export function Level({
+  windowWidth,
+  windowHeight,
   backgroundColor,
   highlightColor,
   level,
   name,
   description,
   onPress,
-}: LevelProps): JSX.Element {
-  const {height, width} = Dimensions.get('window');
+}: LevelProps & DimensionProps): JSX.Element {
   const descriptionStyle = {
-    flex: width >= 480 ? 4 : width >= 560 ? 6 : 2,
-    fontSize: height > 320 ? 14 : 13,
+    flex: windowWidth >= 480 ? 4 : windowWidth >= 560 ? 6 : 2,
+    fontSize: windowHeight > 320 ? 14 : 13,
   };
 
   return (
@@ -63,3 +65,5 @@ export function Level({
     </TouchableView>
   );
 }
+
+export const ResponsiveLevel = responsive(Level);

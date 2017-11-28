@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {Dimensions, StatusBar, StyleSheet, View} from 'react-native';
+import {StatusBar, StyleSheet, View} from 'react-native';
 
-import {Card} from './src/components/Card';
+import {ResponsiveCard} from './src/components/Card';
 import {FadeView} from './src/components/FadeView';
-import {Header} from './src/components/Header';
+import {ResponsiveHeader} from './src/components/Header';
 import {Levels} from './src/components/Levels';
 import {levels} from './src/levels';
 
@@ -27,22 +27,17 @@ const styles = StyleSheet.create({
 export default class App extends React.Component {
   public state = {selectedLevel: 0, showCard: false};
 
-  public constructor(props: {}) {
-    super(props);
-    Dimensions.addEventListener('change', () => this.forceUpdate());
-  }
-
   public render(): JSX.Element {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" translucent />
-        <Header />
+        <ResponsiveHeader />
 
         <View style={styles.content}>
           <Levels onLevelPress={this.handleLevelPress} />
 
           <FadeView style={styles.card} visible={this.state.showCard}>
-            <Card
+            <ResponsiveCard
               level={this.state.selectedLevel}
               {...levels[this.state.selectedLevel]}
               onPress={this.handleCardPress}
